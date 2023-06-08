@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Project</title>
+    <style>*{
+        user-select: none;
+    }
+    
+    body{
+    background-color: rgb(0, 0, 0);
+    border: 10%;
+    
+    border-color: rgb(248, 248, 248);
+    }
+    
+    .name{
+        text-align: center;
+        font-size: 400%;
+        color: rgb(255, 255, 255);
+        text-shadow: 2px 2px 4px #00ffe1;
+    }
+    .bar{
+        background-color:white;
+        color: black;
+        border: 3px outset rgb(255, 255, 255);
+    }
+    .number{
+    color: rgb(255, 255, 255);
+    text-align: center;
+    font-size: 400%;
+    text-shadow: 2px 2px 4px #00ffe1;
+    }
+    .Guess{
+        color: black;
+        background-color: white;
+        margin-left: 17.7%;
+        display: flex;
+        border: 3px  outset rgb(255, 255, 255);
+        border-radius: 5px;
+        box-shadow: 0 5px #82ced6;
+    }
+    .Guess:hover {background-color: #00f189}
+
+.Guess:active {
+  background-color: #abd8ac;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+    #id {
+            border: 3px outset rgb(255, 255, 255);
+            background-color: rgb(255, 255, 255);
+            text-align: center;
+            color: black;
+            padding-inline: 5%;
+           margin-left: 1%;
+           font-size: 1.5rem;
+            margin-bottom: 1%;
+            margin-top: 2%;
+            text-shadow: 2px 2px 2px black;
+            position: relative;
+          }
+          .prev{
+            position: relative;
+            border: 3px outset rgb(255, 255, 255);
+            color: aqua;
+            margin-top: 2%;
+            padding-inline: 2%;
+            margin-left: 4.8%;
+            font-size: 1.6rem;
+            text-align: center;
+            margin-bottom: 1%;
+         
+            text-shadow: 2px 2px 2px white;
+    
+          }
+          .next{
+            position: relative;
+            border: 3px outset rgb(255, 255, 255);
+            color: aqua;
+            margin-top: 2%;
+            padding-inline: 2%;
+            margin-left: 1%;
+            font-size: 1.6rem;
+            text-align: center;
+            margin-bottom: 1%;
+            padding-top: 0.1%;
+            text-shadow: 2px 2px 2px white;
+          }
+        
+    .Sen
+    {
+        position: absolute;
+        margin-left: 58%;
+        font-size: 230%;
+        color: rgb(255, 255, 255);
+    }
+    .score{
+        position: relative;
+        margin-left: 60%;
+        color: rgb(255, 255, 255);
+        font-size: 160%;
+    }
+    .High{
+        position: relative;
+        margin-left: 60%;
+        color: rgb(255, 255, 255);
+        font-size: 160%;
+        margin-bottom: 1%;
+    }
+    .K{
+        position: relative;
+        margin-left: 0.8%;
+        font-size: 160%;
+        margin-top: 2.11%;
+        color: rgb(255, 255, 255);   
+    }
+    .H{
+        position: relative;
+        font-size: 160%;
+        margin-left: 0.8%;
+        color: rgb(255, 255, 255);
+    }
+    .check{
+    display: flex;
+    
+    }
+    .build{
+    display: flex;
+    }
+    .com{
+        display: flex;
+    }
+    .a{
+        color: white;
+        margin-left: 82%;
+    }
+    .b{
+        display: flex;
+    }</style>
+</head>
+<body>
+    <div class="b">
+    <button class="bar" onclick="again()">Again!</button>
+    <div class="a">Between<1 to 20></div>
+    </div>
+    <h1 class="name">Guess My Number!</h1>
+    
+<div class="number">?</div>
+<div class="com">
+    <div class="prev" onclick="prev()">Prev</div>
+<span  id="id">1</span>
+<div class="next" onclick="next()">Next</div>
+<p class="Sen">🤔Start guessing...</p>
+</div>
+<button class="Guess">Check!</button>
+<div class="check">
+<p class="score">Score:</p>
+<p class="H">20</p>
+</div>
+<div class="build">
+<p class="High">🏅High Score:</p>
+<p class="K">0</p>
+</div>
+<script>let s=Math.trunc(Math.random()*20)+1;
+    let num=20;
+    let high=0;
+    function display(y){
+        document.querySelector('.Sen').textContent = y;
+    }
+    document.querySelector('.Guess').addEventListener('click', function(){
+    let sum = Number(document.querySelector('#id').textContent);
+    if(sum==0){
+    display('⛔Number Is Not Their');
+    }
+    else if(sum>s)
+    {
+        if(num>0){
+        document.querySelector('.Sen').textContent = '📈Number Is To High'; 
+        num=num-1;
+        document.querySelector('.H').textContent = num;
+        }
+        else{
+            document.querySelector('.Sen').textContent = '👎Fail'
+        }
+    
+    }
+    else if(sum<s)
+    {
+        if(num>0){
+        document.querySelector('.Sen').textContent = '📉Number Is To Low';
+        num=num-1;
+        document.querySelector('.H').textContent = num;
+        }
+        else{
+            document.querySelector('.Sen').textContent = '👎Fail'
+        }
+    }
+    else if(sum==s){
+        document.querySelector('.Sen').textContent = '🎊Currect Guess';
+        document.querySelector('body').style.backgroundColor = 'green';
+        high++;
+        document.querySelector('.K').textContent = high;
+    }
+    else
+    {
+        document.querySelector('.Sen').textContent = '🤔Start guessing...';
+    }
+    
+    });
+    function again(){
+         s=Math.trunc(Math.random()*20)+1;
+         document.querySelector('body').style.backgroundColor = 'black';
+         sum=1;
+         document.querySelector('span').textContent = sum;
+         document.querySelector('.Sen').textContent = '🤔Start guessing...';
+         n=sum;
+         num=20;
+         document.querySelector('.H').textContent = num;
+         
+    }
+    let n=1;
+    function next(){
+        if(n < 20){
+            n++;
+        document.querySelector('span').textContent = n;
+        }
+    }
+    function prev(){
+        if( n>0){
+            n--;
+        document.querySelector('span').textContent = n;
+        }
+    }</script>
+</body>
+</html>
